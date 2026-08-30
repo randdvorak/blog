@@ -13,6 +13,8 @@ const {
 const base = import.meta.env.BASE_URL;
 const siteRoot = base.endsWith('/') ? base : `${base}/`;
 const aboutUrl = `${siteRoot}about/`;
+const logoPath = `${siteRoot}centesimiae-logo.png`;
+const logoUrl = new URL(logoPath, Astro.site);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -28,21 +30,25 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={logoUrl} />
     <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content={logoUrl} />
+    <link rel="icon" type="image/png" href={logoPath} />
     <title>{title}</title>
   </head>
   <body>
     <div class="shell">
       <header class="site-header">
-        <span class="brand">Rand Dvorak</span>
-        <nav class="site-nav" aria-label="Main navigation">
-          <span aria-current="page">Writing</span>
-          <a href={aboutUrl}>About</a>
-        </nav>
+        <div class="header-inner">
+          <img class="site-logo" src={logoPath} alt="Centesimiae LLC logo" />
+          <nav class="site-nav" aria-label="Main navigation">
+            <a href={aboutUrl}>About</a>
+          </nav>
+        </div>
       </header>
       <main><slot /></main>
       <footer class="site-footer">
-        <span>© {new Date().getFullYear()} Rand Dvorak</span>
+        <span>© {new Date().getFullYear()} Centesimiae LLC. All rights reserved.</span>
         <span>Written locally. Published with GitHub Pages.</span>
       </footer>
     </div>
