@@ -1,0 +1,26 @@
+{
+  "name": "randdvorak-blog",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "editor": "node editor/server.mjs",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "publish": "node scripts/publish.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.2.9",
+    "express": "^5.1.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^16.3.0",
+    "multer": "^2.0.2",
+    "sanitize-html": "^2.17.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "typescript": "^5.9.2"
+  }
+}

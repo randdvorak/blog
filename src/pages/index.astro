@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const posts = (await getCollection('posts', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const formatDate = (date: Date) => new Intl.DateTimeFormat('en-US', {
+  year: 'numeric', month: 'short', day: 'numeric'
+}).format(date);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Notes and essays</p>
+      <h1>Ideas worth keeping.</h1>
+    </div>
+    <p class="hero-copy">Writing about technology, creative work, and the details that make both more useful.</p>
+  </section>
+
+  <section class="post-list" aria-labelledby="latest-posts">
+    <p class="section-label" id="latest-posts">Latest writing</p>
+    {posts.map((post) => (
+      <a class="post-card" href={`${base}posts/${post.id}/`}>
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+        <div>
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+        </div>
+        <span class="post-arrow" aria-hidden="true">→</span>
+      </a>
+    ))}
+  </section>
+</BaseLayout>

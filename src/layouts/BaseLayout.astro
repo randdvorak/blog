@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Rand Dvorak — Notes and essays',
+  description = 'Notes, essays, and useful observations.'
+} = Astro.props;
+const base = import.meta.env.BASE_URL;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="site-header">
+        <a class="brand" href={base}>Rand Dvorak</a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href={base}>Writing</a>
+          <a href={`${base}about/`}>About</a>
+        </nav>
+      </header>
+      <main><slot /></main>
+      <footer class="site-footer">
+        <span>© {new Date().getFullYear()} Rand Dvorak</span>
+        <span>Written locally. Published with GitHub Pages.</span>
+      </footer>
+    </div>
+  </body>
+</html>

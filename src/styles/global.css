@@ -1,0 +1,153 @@
+:root {
+  color-scheme: light;
+  --paper: #f6f2e9;
+  --paper-deep: #ebe4d7;
+  --ink: #1f2722;
+  --muted: #647067;
+  --line: #d3cbbd;
+  --accent: #b94d2d;
+  --accent-dark: #87351f;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(185, 77, 45, 0.09), transparent 28rem),
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.65;
+}
+
+a { color: inherit; }
+
+.shell {
+  width: min(72rem, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-nav { display: flex; gap: 1.25rem; }
+.site-nav a { color: var(--muted); font-size: 0.9rem; text-decoration: none; }
+.site-nav a:hover { color: var(--accent); }
+
+main { min-height: calc(100vh - 10rem); }
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+  gap: 4rem;
+  align-items: end;
+  padding: 8rem 0 5rem;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1, h2, h3 { font-family: var(--serif); line-height: 1.12; }
+
+.hero h1 {
+  max-width: 13ch;
+  margin: 0;
+  font-size: clamp(3.2rem, 8vw, 7.2rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+}
+
+.hero-copy {
+  margin: 0 0 0.8rem;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+}
+
+.post-list { padding: 2rem 0 7rem; }
+
+.section-label {
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--ink);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.post-card {
+  display: grid;
+  grid-template-columns: 9rem 1fr auto;
+  gap: 2rem;
+  align-items: baseline;
+  padding: 2.1rem 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.post-card time, .post-card p { color: var(--muted); }
+.post-card h2 { margin: 0 0 0.45rem; font-size: clamp(1.7rem, 3vw, 2.6rem); }
+.post-card p { margin: 0; }
+.post-arrow { color: var(--accent); font-size: 1.5rem; transition: transform 160ms ease; }
+.post-card:hover .post-arrow { transform: translateX(0.35rem); }
+
+.article-header { max-width: 50rem; padding: 7rem 0 3rem; }
+.article-header h1 { margin: 0.3rem 0 1.5rem; font-size: clamp(3rem, 7vw, 6.2rem); letter-spacing: -0.045em; }
+.article-meta { color: var(--muted); }
+
+.prose {
+  max-width: 46rem;
+  padding: 2rem 0 7rem;
+  font-family: var(--serif);
+  font-size: 1.16rem;
+}
+
+.prose h2 { margin-top: 2.8rem; font-size: 2rem; }
+.prose h3 { margin-top: 2.2rem; font-size: 1.45rem; }
+.prose a { color: var(--accent-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.prose img { display: block; width: 100%; height: auto; margin: 2.5rem 0; border-radius: 0.4rem; }
+.prose blockquote { margin: 2rem 0; padding-left: 1.5rem; border-left: 3px solid var(--accent); color: var(--muted); }
+.prose pre { overflow-x: auto; padding: 1.2rem; border-radius: 0.4rem; font-size: 0.9rem; }
+.prose code:not(pre code) { padding: 0.12rem 0.3rem; background: var(--paper-deep); border-radius: 0.2rem; font-size: 0.9em; }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.tag { padding: 0.25rem 0.6rem; border: 1px solid var(--line); border-radius: 99rem; color: var(--muted); font-size: 0.78rem; }
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.8rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 720px) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; padding: 5rem 0 3rem; }
+  .post-card { grid-template-columns: 1fr auto; gap: 0.5rem 1rem; }
+  .post-card time { grid-column: 1 / -1; }
+  .site-footer { display: block; }
+}
