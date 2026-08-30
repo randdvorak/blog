@@ -11,8 +11,8 @@ const {
   description = 'Notes, essays, and useful observations.'
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const homeUrl = base.endsWith('/') ? base : `${base}/`;
-const aboutUrl = `${homeUrl}about/`;
+const siteRoot = base.endsWith('/') ? base : `${base}/`;
+const aboutUrl = `${siteRoot}about/`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -34,9 +34,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <body>
     <div class="shell">
       <header class="site-header">
-        <a class="brand" href={homeUrl}>Rand Dvorak</a>
+        <span class="brand">Rand Dvorak</span>
         <nav class="site-nav" aria-label="Main navigation">
-          <a href={homeUrl}>Writing</a>
+          <span aria-current="page">Writing</span>
           <a href={aboutUrl}>About</a>
         </nav>
       </header>
