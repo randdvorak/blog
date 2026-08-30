@@ -7,8 +7,6 @@ tags:
   - notes
 ---
 
-# Welcome
-
 This blog starts as a set of files on my computer.
 
 I write each post locally. GitHub Pages publishes the finished static site.

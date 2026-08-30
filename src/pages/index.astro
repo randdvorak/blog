@@ -1,12 +1,15 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const base = import.meta.env.BASE_URL;
 const posts = (await getCollection('posts', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const postsWithContent = await Promise.all(posts.map(async (post) => ({
+  post,
+  Content: (await render(post)).Content
+})));
 const formatDate = (date: Date) => new Intl.DateTimeFormat('en-US', {
-  year: 'numeric', month: 'short', day: 'numeric'
+  year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC'
 }).format(date);
 ---
 
@@ -21,15 +24,20 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat('en-US', {
 
   <section class="post-list" aria-labelledby="latest-posts">
     <p class="section-label" id="latest-posts">Latest writing</p>
-    {posts.map((post) => (
-      <a class="post-card" href={`${base}posts/${post.id}/`}>
-        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-        <div>
+    {postsWithContent.map(({ post, Content }) => (
+      <article class="inline-post" id={post.id}>
+        <header class="inline-post__header">
+          <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
           <h2>{post.data.title}</h2>
-          <p>{post.data.description}</p>
+          {post.data.description && <p>{post.data.description}</p>}
+          {post.data.tags.length > 0 && (
+            <div class="tag-row">{post.data.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
+          )}
+        </header>
+        <div class="prose">
+          <Content />
         </div>
-        <span class="post-arrow" aria-hidden="true">→</span>
-      </a>
+      </article>
     ))}
   </section>
 </BaseLayout>

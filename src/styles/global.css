@@ -98,21 +98,16 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.12; }
   text-transform: uppercase;
 }
 
-.post-card {
-  display: grid;
-  grid-template-columns: 9rem 1fr auto;
-  gap: 2rem;
-  align-items: baseline;
-  padding: 2.1rem 0;
+.inline-post {
+  padding: 5rem 0 1rem;
   border-bottom: 1px solid var(--line);
-  text-decoration: none;
 }
 
-.post-card time, .post-card p { color: var(--muted); }
-.post-card h2 { margin: 0 0 0.45rem; font-size: clamp(1.7rem, 3vw, 2.6rem); }
-.post-card p { margin: 0; }
-.post-arrow { color: var(--accent); font-size: 1.5rem; transition: transform 160ms ease; }
-.post-card:hover .post-arrow { transform: translateX(0.35rem); }
+.inline-post__header { max-width: 50rem; }
+.inline-post__header time { color: var(--accent); font-size: 0.76rem; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; }
+.inline-post__header h2 { margin: 0.7rem 0 0.8rem; font-size: clamp(2.6rem, 6vw, 5.2rem); letter-spacing: -0.04em; }
+.inline-post__header > p { max-width: 42rem; margin: 0; color: var(--muted); font-family: var(--serif); font-size: 1.18rem; }
+.inline-post .prose { padding-bottom: 4.5rem; }
 
 .article-header { max-width: 50rem; padding: 7rem 0 3rem; }
 .article-header h1 { margin: 0.3rem 0 1.5rem; font-size: clamp(3rem, 7vw, 6.2rem); letter-spacing: -0.045em; }
@@ -147,7 +142,6 @@ h1, h2, h3 { font-family: var(--serif); line-height: 1.12; }
 
 @media (max-width: 720px) {
   .hero { grid-template-columns: 1fr; gap: 2rem; padding: 5rem 0 3rem; }
-  .post-card { grid-template-columns: 1fr auto; gap: 0.5rem 1rem; }
-  .post-card time { grid-column: 1 / -1; }
+  .inline-post { padding-top: 3.5rem; }
   .site-footer { display: block; }
 }
