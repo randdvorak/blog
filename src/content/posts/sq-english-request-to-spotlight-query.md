@@ -4,7 +4,7 @@ date: '2026-10-18'
 description: >-
   sq is a utility that utilizes a fine tuned qwen2.5-coder model to search macOS
   Spotlight
-draft: true
+draft: false
 tags:
   - ML
   - AI
